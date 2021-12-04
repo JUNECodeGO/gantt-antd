@@ -1,0 +1,59 @@
+/** @format */
+
+.left {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #fff;
+  border-right: 2px solid #f0f2f5;
+}
+.left::-webkit-scrollbar {
+  width: 0;
+}
+
+.resize::-webkit-scrollbar {
+  width: 10px;
+  height: inherit;
+}
+
+.resize {
+  position: sticky;
+  top: 0;
+  min-width: 600px;
+  max-width: calc(100vw - 400px);
+  height: calc(100vh - 310px);
+  overflow: scroll;
+  background: #ccc;
+  opacity: 0;
+  resize: horizontal;
+}
+
+.treeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 10px);
+  margin: 60px 10px 0 0;
+  background-color: #fff;
+}
+
+.treeContainer::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.ant-tree-treenode {
+  width: 100%;
+  height: 38px;
+  line-height: 38px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ant-tree-node-content-wrapper {
+  flex: 1;
+  padding: 0;
+}
+
+.ant-tree-treenode span {
+  height: 38px;
+  line-height: 38px;
+}
