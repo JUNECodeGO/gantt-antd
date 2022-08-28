@@ -1,12 +1,12 @@
 /** @format */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {createSVG, TaskDetail} from '../../utils/index';
-import {Popover} from 'antd';
-import {defaultOptions} from '../../constants';
-import moment from 'moment';
-import '../../index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createSVG, TaskDetail } from "../../utils/index";
+import { Popover } from "antd";
+import { defaultOptions } from "../../constants";
+import moment from "moment";
+import "../../index.css";
 
 interface Props {
   task: TaskDetail;
@@ -17,41 +17,41 @@ interface Props {
   columnWidth: number;
 }
 
-const Bar = ({task, dateRange, columnWidth}: Props) => {
-  const {ganttStart} = dateRange.current;
-  const {step, padding, barHeight, barCornerRadius} = defaultOptions;
-  const {startDate, endDate, id, index, color, detail} = task;
-  const {storyPoint, summary, status, key} = detail;
+const Bar = ({ task, dateRange, columnWidth }: Props) => {
+  const { ganttStart } = dateRange.current;
+  const { step, padding, barHeight, barCornerRadius } = defaultOptions;
+  const { startDate, endDate, id, index, color, detail } = task;
+  const { storyPoint, summary, status, key } = detail;
 
   const content = (
-    <ul className='popoverContent'>
+    <ul className="popoverContent">
       <li>
-        <span className='label'>Start Date</span>
-        <span className='value'>{moment(startDate).format('YYYY-MM-DD')}</span>
+        <span className="label">Start Date</span>
+        <span className="value">{moment(startDate).format("YYYY-MM-DD")}</span>
       </li>
       <li>
-        <span className='label'>End Date</span>
-        <span className='value'>{moment(endDate).format('YYYY-MM-DD')}</span>
+        <span className="label">End Date</span>
+        <span className="value">{moment(endDate).format("YYYY-MM-DD")}</span>
       </li>
       <li>
-        <span className='label'>Status</span>
-        <span className='value'> {status.name || ''}</span>
+        <span className="label">Status</span>
+        <span className="value"> {status.name || ""}</span>
       </li>
       <li>
-        <span className='label'>Store Point</span>
-        <span className='value'> {storyPoint || ''}</span>
+        <span className="label">Store Point</span>
+        <span className="value"> {storyPoint || ""}</span>
       </li>
     </ul>
   );
 
   const title = (
-    <a href={`https://jira.shopee.io/browse/${key}`} target='_blank'>
+    <a href={`https://www.baidu.com/browse/${key}`} target="_blank">
       {summary}
     </a>
   );
 
   const compute_x = () => {
-    const diff = moment(startDate).diff(ganttStart, 'hour');
+    const diff = moment(startDate).diff(ganttStart, "hour");
 
     return ((diff + step) / step) * columnWidth;
   };
@@ -60,11 +60,11 @@ const Bar = ({task, dateRange, columnWidth}: Props) => {
     return padding / 2 + index * (barHeight + padding);
   };
 
-  const duration = moment(endDate).diff(startDate, 'hour') / step;
+  const duration = moment(endDate).diff(startDate, "hour") / step;
 
-  const group = createSVG('g', {
-    class: 'bar-wrapper',
-    'data-id': id,
+  const group = createSVG("g", {
+    class: "bar-wrapper",
+    "data-id": id,
   });
 
   const temp = {
@@ -73,13 +73,13 @@ const Bar = ({task, dateRange, columnWidth}: Props) => {
     y: compute_y(),
     corner_radius: barCornerRadius,
     width: columnWidth * duration,
-    bar_group: createSVG('g', {
-      class: 'bar-group',
+    bar_group: createSVG("g", {
+      class: "bar-group",
       append_to: group,
     }),
   };
   ReactDOM.render(
-    <Popover content={content} title={title} placement='bottomRight'>
+    <Popover content={content} title={title} placement="bottomRight">
       <rect
         x={temp.x}
         y={temp.y}
@@ -87,7 +87,7 @@ const Bar = ({task, dateRange, columnWidth}: Props) => {
         height={temp.height}
         rx={temp.corner_radius}
         ry={temp.corner_radius}
-        className='bar'
+        className="bar"
         fill={color}
       />
     </Popover>,
