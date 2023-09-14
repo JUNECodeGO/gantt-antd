@@ -8,7 +8,6 @@ import HeaderSvg from './components/HeaderSvg';
 import {getTasks, TaskDetail} from './utils';
 
 import './index.css';
-import TimelineContainer from '../../ganntContext';
 
 enum ClickType {
   Add = 'add',
@@ -18,8 +17,8 @@ enum ClickType {
 const coefficientList = [1, 0.8, 0.6];
 
 export default forwardRef(
-  (_, ref: React.LegacyRef<HTMLDivElement> | undefined) => {
-    const {list} = TimelineContainer.useContainer();
+  (props: any, ref: React.LegacyRef<HTMLDivElement> | undefined) => {
+    const {list} = props;
     const [svgSize, setSvgSize] = useState({width: 0, height: 0});
     const [allTasks, setAllTasks] = useState<TaskDetail[]>([]);
     const [delay, setDelay] = useState(false);

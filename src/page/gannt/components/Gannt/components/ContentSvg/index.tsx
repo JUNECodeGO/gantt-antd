@@ -28,10 +28,7 @@ const defaultLayout = {
 const ContentSvg = (props: Props) => {
   const {svgSize, setSvgSize, tasks, dateRange, dates, coefficient} = props;
   const svgRef = useRef<SVGElement | undefined>();
-  const layout = useRef<{
-    grid: HTMLElement | null;
-    bar: HTMLElement | null;
-  }>(defaultLayout);
+  const layout = useRef<any>(defaultLayout);
 
   const setupLayers = () => {
     ['grid', 'bar'].forEach(ele => {
