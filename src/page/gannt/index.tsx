@@ -6,7 +6,7 @@ import {useEffect} from 'react';
 import Filter from './components/Filter';
 import Gannt from './components/Gannt';
 import GanntTable from './components/GanntTable';
-import {mockData} from '../../mock/index';
+import TimelineContainer from './ganntContext';
 import './index.css';
 
 const GanntPage = () => {
@@ -51,22 +51,20 @@ const GanntPage = () => {
   }, []);
 
   return (
-    <div className='jiraTimeline'>
-      <Spin spinning={false}>
-        <Filter />
-        <div className='content'>
-          <GanntTable
-            ref={leftRef as React.RefObject<HTMLDivElement>}
-            rightRef={rightRef}
-            list={mockData}
-          />
-          <Gannt
-            ref={rightRef as React.RefObject<HTMLDivElement>}
-            list={mockData}
-          />
-        </div>
-      </Spin>
-    </div>
+    <TimelineContainer.Provider>
+      <div className='jiraTimeline'>
+        <Spin spinning={false}>
+          <Filter />
+          <div className='content'>
+            <GanntTable
+              ref={leftRef as React.RefObject<HTMLDivElement>}
+              rightRef={rightRef}
+            />
+            <Gannt ref={rightRef as React.RefObject<HTMLDivElement>} />
+          </div>
+        </Spin>
+      </div>
+    </TimelineContainer.Provider>
   );
 };
 
