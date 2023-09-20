@@ -4,7 +4,7 @@
 
 ### 启动
 
-npm run start
+npm install gantt-antd@latest
 
 ### 介绍
 

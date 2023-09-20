@@ -1,9 +1,13 @@
 /** @format */
 
 import React from 'react';
-import {Button, Input, Form, DatePicker, Col, Row, Tabs, Tooltip} from 'antd';
-
-import './index.css';
+import {Button, Input, Form, DatePicker, Col, Row, Tabs} from 'antd';
+import 'antd/es/input/style/index.less';
+import 'antd/es/input/style/mixin.less';
+import 'antd/es/button/style/index.less';
+import 'antd/es/form/style/index.less';
+import 'antd/es/date-picker/style/index.less';
+import 'antd/es/tabs/style/index.less';
 
 const groupStyle = {
   display: 'flex',
@@ -55,12 +59,7 @@ const HeaderFilter = () => {
           <Row>
             <Col style={{height: '44px'}} span={5}>
               <Input.Group compact style={groupStyle}>
-                <span className={'selectAddon'}>
-                  Filter ID
-                  <Tooltip placement='topLeft' title='Title'>
-                    {/* <QuestionCircleOutlined /> */}
-                  </Tooltip>
-                </span>
+                <span className={'selectAddon'}>Filter ID</span>
                 <Form.Item name='filterId' noStyle>
                   <Input />
                 </Form.Item>

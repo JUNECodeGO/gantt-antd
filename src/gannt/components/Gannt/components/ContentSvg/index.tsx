@@ -107,7 +107,6 @@ const ContentSvg = (props: Props) => {
 
   const makeBars = () => {
     if (layout.current && layout.current.bar) {
-      console.log(tasks);
       tasks.forEach(task => {
         const {startDate, endDate} = task;
         if (startDate && endDate) {

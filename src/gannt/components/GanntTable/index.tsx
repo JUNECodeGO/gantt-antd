@@ -1,27 +1,14 @@
 /** @format */
 
 import React, {forwardRef, Key, LegacyRef} from 'react';
-import {Avatar, Col, Empty, Row, Tree} from 'antd';
+import {Col, Empty, Row, Tree} from 'antd';
 import TreeHeader from './components/TreeHeader';
 import {TreeNodeNormal} from 'antd/lib/tree/Tree';
-import {cols} from './constants';
-import './index.css';
+import {defaultCols} from './constants';
+import 'antd/es/tree/style/index.less';
 
-const renderLabel = (title: string, data: any) => {
+const _renderLabel = (title: string, data: any) => {
   switch (title) {
-    case 'status':
-      return data.name;
-    case 'type':
-      return (
-        <span>
-          <Avatar
-            src={data.iconUrl}
-            size={14}
-            shape='square'
-            style={{marginRight: '4px'}}
-          />
-        </span>
-      );
     case 'key':
       return (
         <a
@@ -38,7 +25,7 @@ const renderLabel = (title: string, data: any) => {
   }
 };
 
-const getTreeData = (event: any[]) => {
+const getTreeData = (event: any[], cols: any, renderLabel) => {
   const result: TreeNodeNormal[] = [];
   const fn = (
     list: any[],
@@ -86,16 +73,18 @@ export default forwardRef(
     props: {
       rightRef: React.MutableRefObject<HTMLElement | undefined>;
       list: any;
+      cols?: any;
+      renderLabel?: any;
     },
     ref: LegacyRef<HTMLDivElement> | undefined
   ) => {
-    const {list} = props;
-    const data = getTreeData(list);
-    const onLoadData = async ({key}: any) => {
+    const {list, cols = defaultCols, renderLabel = _renderLabel} = props;
+    const data = getTreeData(list, cols, renderLabel);
+    const onLoadData = async () => {
       return Promise.resolve();
     };
 
-    const handleExpand = (expandedKeys: Key[]) => {
+    const handleExpand = (_: Key[]) => {
       // const ids: string[] = expandedKeys.map(
       //   item => (typeof item === 'string' && item.split('_')[0]) || ''
       // );
@@ -120,7 +109,7 @@ export default forwardRef(
 
     return (
       <div className='left' ref={ref}>
-        <TreeHeader />
+        <TreeHeader cols={cols} />
         <div className='resize' style={{width: '800px'}}></div>
         <div className='treeContainer'>
           {data.length ? (
@@ -129,7 +118,7 @@ export default forwardRef(
               loadData={onLoadData}
               onExpand={handleExpand}
               onSelect={handleSelect}
-              autoExpandParent={false}
+              autoExpandParent={true}
             />
           ) : (
             <Empty style={{marginTop: '50px'}} />

@@ -7,8 +7,6 @@ import ContentSvg from './components/ContentSvg';
 import HeaderSvg from './components/HeaderSvg';
 import {getTasks, TaskDetail} from './utils';
 
-import './index.css';
-
 enum ClickType {
   Add = 'add',
   Minus = 'minus',

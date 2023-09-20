@@ -2,11 +2,7 @@
 
 import React from 'react';
 import {Row, Col} from 'antd';
-import {cols} from '../../constants';
-
-import './index.css';
-
-const TreeHeader = () => {
+const TreeHeader = ({cols}) => {
   return (
     <Row
       className={'header'}

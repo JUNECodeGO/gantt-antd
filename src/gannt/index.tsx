@@ -6,10 +6,22 @@ import {useEffect} from 'react';
 import Filter from './components/Filter';
 import Gannt from './components/Gannt';
 import GanntTable from './components/GanntTable';
-import {mockData} from '../../mock/index';
+
 import './index.css';
 
-const GanntPage = () => {
+export interface Cols {
+  value: string;
+  title: string;
+  span: number;
+}
+
+export interface Props {
+  data: any[];
+  cols: Cols[];
+  renderLabel: (title: string, data: any) => any;
+}
+const GanntPage = (props: Props) => {
+  const {data, cols, renderLabel} = props;
   const leftRef = useRef<HTMLElement>();
   const rightRef = useRef<HTMLElement>();
 
@@ -58,11 +70,13 @@ const GanntPage = () => {
           <GanntTable
             ref={leftRef as React.RefObject<HTMLDivElement>}
             rightRef={rightRef}
-            list={mockData}
+            list={data}
+            cols={cols}
+            renderLabel={renderLabel}
           />
           <Gannt
             ref={rightRef as React.RefObject<HTMLDivElement>}
-            list={mockData}
+            list={data}
           />
         </div>
       </Spin>

@@ -1,7 +1,7 @@
 /** @format */
 
 import moment from 'moment';
-import {IssueTypeId} from 'src/page/gannt/constant';
+import {IssueTypeId} from '../../../constant/index';
 
 export function createSVG(
   tag: string,

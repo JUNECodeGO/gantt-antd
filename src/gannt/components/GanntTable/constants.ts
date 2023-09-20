@@ -1,6 +1,6 @@
 /** @format */
 
-export const cols = [
+export const defaultCols = [
   {
     value: 'type',
     title: 'Type',
