@@ -1,3 +1,5 @@
+/** @format */
+
 export enum ViewMode {
   DAY = 1,
   WEEK = 2,
@@ -13,9 +15,9 @@ const common = {
   dateFormat: 'YYYY-MM-DD',
   popupTrigger: 'click',
   customPopupHtml: null,
-}
+};
 
-const defaultType = ViewMode.DAY
+const defaultType = ViewMode.DAY;
 
 export const defaultOptions = {
   [ViewMode.DAY]: {
@@ -33,4 +35,4 @@ export const defaultOptions = {
     columnWidth: 24 * 30,
     step: 120,
   },
-}[defaultType]
+}[defaultType];
