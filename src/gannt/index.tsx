@@ -7,7 +7,7 @@ import Filter from './components/Filter';
 import Gannt from './components/Gannt';
 import GanntTable from './components/GanntTable';
 
-import './index.css';
+import './index.less';
 
 export interface Cols {
   value: string;
@@ -17,8 +17,8 @@ export interface Cols {
 
 export interface Props {
   data: any[];
-  cols: Cols[];
-  renderLabel: (title: string, data: any) => any;
+  cols?: Cols[];
+  renderLabel?: (title: string, data: any) => any;
 }
 const GanntPage = (props: Props) => {
   const {data, cols, renderLabel} = props;
