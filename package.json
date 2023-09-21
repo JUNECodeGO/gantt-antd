@@ -55,7 +55,7 @@
     "build": "npm run clean && tsc && npm run lessc",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build -o dist/storybook"
   },
   "files": [
     "dist",
